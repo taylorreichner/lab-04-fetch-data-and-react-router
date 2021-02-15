@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+.the-header {
+  color: red;
+  text-align: center;
+  
+}
+.homey {
+  text-align: center;
+  
+}
+.welcome {
+  display: flex;
+  
+}
+.selected {
+  float: right;
+  color: green;
+}
+.pics {
+  width: 100px;
+  height: 100px;
+}
+.the-map {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}

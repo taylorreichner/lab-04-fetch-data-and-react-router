@@ -7,9 +7,7 @@ export default class SearchBar extends React.Component {
         <div>
             <input value={this.props.currentValue}
             onChange={this.props.handleChange}
-           
-            
-            />
+           />
                 
             
          </div> 

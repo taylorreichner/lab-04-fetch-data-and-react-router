@@ -9,7 +9,7 @@ export default class PokeItem extends React.Component {
                   <p>{this.props.pokeosItemProp.pokemon}</p>
                   <p>{this.props.pokeosItemProp.shape}</p>
                   <p>{this.props.pokeosItemProp.ability_1}</p>
-                  <img src={this.props.pokeosItemProp.url_image}/>
+                  <img className="pics" src={this.props.pokeosItemProp.url_image}/>
                   
               </li>
             
