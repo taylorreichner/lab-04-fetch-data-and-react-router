@@ -12,6 +12,7 @@ export default class App extends React.Component {
                <Switch>
                     <Route exact path="/" render={(routerProps) => <HomePage {...routerProps} />} />
                    <Route exact path="/search" render={(routerProps) => <Search {...routerProps} />} />
+                   <Route exact path="/search/:pokemonName" render={(routerProps) => <DetailPage {...routerProps} />} />
                </Switch>
            </Router>
         );
