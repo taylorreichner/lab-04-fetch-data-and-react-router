@@ -7,9 +7,11 @@ export default class PokeItem extends React.Component {
             <Link to={`/pokemon/${this.props.pokemon.pokemon}`}>
             <div key={this.props.pokemon.pokebase}>
                 <div>
-                <img src={this.props.pokemon.url_image} alt="poke" />
+                <img className="pics"  src={this.props.pokemon.url_image} alt="poke" />
                 </div>
-                {this.props.pokemon.pokemon} : {this.props.pokemon.shape} : {this.props.pokemon.ability_1}
+                <div>Name: {this.props.pokemon.pokemon}</div>
+                <div>Shape: {this.props.pokemon.shape}</div>  
+                <div>First ability: {this.props.pokemon.ability_1}</div>
             </div>
         </Link>
     )

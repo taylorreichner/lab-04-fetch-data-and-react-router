@@ -86,10 +86,10 @@ export default class Search extends React.Component {
         handleSortChange2={this.handleSortChange2}
        />
        <p>Page # {this.state.currentPage}</p>
-       <button onClick={this.handlePreviousClick}>Previous</button>
-       <button onClick={this.handleNextClick}>Next</button>
-        <h1>Welcome to the machine!!</h1>
-        <div>
+       <button onClick={this.handlePreviousClick}  disabled={this.state.currentPage === 1}>Previous</button>
+       <button onClick={this.handleNextClick} disabled={this.state.currentPage === 27}>Next</button>
+        <h1 className="the-machine">Welcome to the machine!!</h1>
+        <div className="poke-lists">
           { loading 
           ? <Spinner />
           : <PokeList pokemonData={pokemonData} />
