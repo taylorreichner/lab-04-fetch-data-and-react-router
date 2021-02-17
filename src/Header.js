@@ -8,7 +8,8 @@ export default class Header extends React.Component {
                 
                 <span className="welcome">Welcome to my pokedex sorting hat thing</span>
                 <NavLink exact activeClassName="selected" to="/">Home Page </NavLink>
-                <NavLink exact activeClassName="selected" to="/search">Search Page</NavLink>
+                <NavLink exact activeClassName="selected" to="/pokemon">Search Page</NavLink>
+                
                 
             </header>
         );

@@ -2,31 +2,33 @@ import React from 'react';
 import './App.css';
 import request from 'superagent';
 import Dropdown from './Dropdown';
-
-
-
+import Spinner from "./Spinner";
+import PokeList from './PokeList';
 
 export default class Search extends React.Component {
   state = {
-    pokemon: [],
+    pokemonData: [],
     query: '',
     sortBy: 'shape',
     sortBy2: 'asc',
-
+    loading: false,
+    currentPage: 1,
   }
   componentDidMount = async () => {
     await this.fetchPokemon();
   }
   
   fetchPokemon = async () => {
-    const pokeData = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?sort=${this.state.sortBy}&direction=${this.state.sortBy2}&pokemon=${this.state.query}`);
+    this.setState({ loading: true });
     
-  
-    this.setState({ 
-      pokemon: pokeData.body.results,
+    const pokeData = await request.get(`https://pokedex-alchemy.herokuapp.com/api/pokedex?sort=${this.state.sortBy}&direction=${this.state.sortBy2}&pokemon=${this.state.query}&page=${this.state.currentPage}&perPage=30`);
+    
+    this.setState({
+      loading: false, 
+      pokemonData: pokeData.body.results,
     });
   }
-  
+ 
   handleClick = async () => {
     await this.fetchPokemon();
   }
@@ -51,42 +53,49 @@ export default class Search extends React.Component {
     await this.fetchPokemon();
     console.log('hey it worked')
   }
+  handleNextClick = async () => {
+    await this.setState({
+      currentPage: this.state.currentPage + 1
+    });
+    await this.fetchPokemon();
+    
+  }
+
+  handlePreviousClick = async () => {
+    await this.setState({
+      currentPage: this.state.currentPage - 1
+    });
+    await this.fetchPokemon();
+  }
+
   
   render() {
-
+    const {
+      pokemonData,
+      loading,
+    } = this.state;
       return (
-       // console.log(this.state.sortBy),
-        <>
-           <label>
-          Search
-           <input onChange={this.handleQueryChange} />
-        </label>
+      <>
+          <label>
+            Search
+            <input onChange={this.handleQueryChange} />
+          </label>
         <button onClick={this.handleClick}>Go!</button>
         <Dropdown
         handleSortChange={this.handleSortChange}
         handleSortChange2={this.handleSortChange2}
        />
+       <p>Page # {this.state.currentPage}</p>
+       <button onClick={this.handlePreviousClick}>Previous</button>
+       <button onClick={this.handleNextClick}>Next</button>
         <h1>Welcome to the machine!!</h1>
-        
         <div>
-         { this.state.pokemon.map(poke => 
-            <div key={poke.pokemon}>
-              <div>
-              <img src={poke.url_image} alt="poke" />
-              </div>
-              {poke.pokemon} 
-              <p>First ability- {poke.ability_1}</p>
-              <p>Shape- {poke.shape}</p>
-            </div>)
+          { loading 
+          ? <Spinner />
+          : <PokeList pokemonData={pokemonData} />
           }
-
-      
         </div>
-      
-        
-        
-        </>
-      
+      </>
     );
   }
 }
