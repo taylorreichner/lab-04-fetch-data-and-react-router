@@ -5,19 +5,17 @@ export default class Dropdown extends React.Component {
         return (
             <div>
             <select className="drops"
-            value={this.props.currentValue}
-            onChange={this.props.handleChange}
+            onChange={this.props.handleSortChange}
             >
             
             <option value={['shape']}>Shape</option>
             <option value={['ability_1']}>Ability 1</option>
             </select>
             <select
-            value={this.props.currentValue2}
-            onChange={this.props.handleChange2}
+            onChange={this.props.handleSortChange2}
             >
-            <option value={'ascending'}>ascending</option>
-            <option value={'descending'}>descending</option>    
+            <option value={'asc'}>ascending</option>
+            <option value={'desc'}>descending</option>    
             </select>
             </div>
         )
